@@ -26,12 +26,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //ULR authorizations
                 .authorizeRequests()
                 //The order of the rules matters and the more specific rules should go first
-                .antMatchers("/", "/index.html","/h2-console/**").permitAll()//Allow any user to access path / and /index.html
+                .antMatchers("/", "/index.html","/h2-console/**","/user/registration").permitAll()//Allow any user to access path / and /index.html
                 .anyRequest().authenticated()
+
 
                 // Authentication mode
                 .and().formLogin()//redirect to /login HTML page and then to the resource after successfull authentication
-                .and().httpBasic() //for web API Auth
+                .and().httpBasic()//for web API Auth
+                .and().logout().permitAll()
                 .and().csrf().disable();//disable csrf protection
 
         /**
@@ -64,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     //@Bean
     public PasswordEncoder getPasswordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 
 }

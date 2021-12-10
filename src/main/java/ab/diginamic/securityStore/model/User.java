@@ -3,6 +3,7 @@ package ab.diginamic.securityStore.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Table(name="users")
 @Setter
 @Getter
+@ToString
 public class User {
 
     @Id

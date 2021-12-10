@@ -20,6 +20,7 @@ class UserRepositoryTest {
         String password = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(password);
         userRepository.save(user);
+        System.out.println(user.toString());
     }
 
 }
